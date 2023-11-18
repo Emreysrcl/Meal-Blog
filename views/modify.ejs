@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modify</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h1>
+            <%= heading  %>
+        </h1>
+        <% if (locals.meal) { %>
+            <form id="editForm" method="post" action="/api/meals/<%= meal.id %>">
+                <input type="text" name="mealName" value="<%= meal.mealName %>">
+                <input type="text" name="mealType" value="<%= meal.mealType%>">
+                <input type="text" name="mealArea" value="<%= meal.mealArea %>">
+                <textarea id="iiarea" rows="10"><%= meal.mealIngredient %></textarea>
+                <textarea id="ınstruct" rows="10"><%= meal.mealInstructions %></textarea>
+                <input type="text" name="mealImage" value="<%= meal.mealImage %>">
+                <button style="background-color: #2ecc71;
+                padding: 10px 15px;
+                font-size: 1em;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                border: none;
+                color: #fff;
+                text-align: center;
+                text-decoration: none; " class="full-width" type="submit"> <%= submit %></button>
+            </form>
+        <% }else{ %>
+            <form id="newPostForm" method="post" action="/api/meals">
+                <input type="text" name="mealName" placeholder="Name" required>
+                <input type="text" name="mealType" placeholder="Type" required>
+                <input type="text" name="mealArea" placeholder="Area" required>
+                <textarea name="mealIngredient" placeholder="Ingredient" required rows="10"></textarea>
+                <textarea name="mealInstructions" placeholder="Instructions" required rows="10"></textarea>
+                <input type="text" name="mealImage" placeholder="Img" required>
+                <button class="full-width" type="submit">
+                    <%= submit %>
+                </button>
+            </form>
+        <% } %>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
